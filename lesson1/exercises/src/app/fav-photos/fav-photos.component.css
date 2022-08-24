@@ -2,10 +2,14 @@ h3 {
    color: brown;
 }
 
-img {
-
+.photos img {
+   width: 200px;
+   height: 120px;
+   margin-top: 20px;
+   margin-bottom: 20px;
 }
 
 .photos {
    text-align: center;
+
 }
