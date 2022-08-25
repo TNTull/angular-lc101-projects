@@ -6,13 +6,17 @@
     color: #3c79b8;
 }
 
+.iceCreamReward {
+    color:green;
+}
+
 h3 {
     text-align: center;
 }
 
 img {
-    max-width: 15%;
-    height: auto;
+    max-width: 100px;
+    height: 100px;
     display: block;
     margin: auto;
 }
