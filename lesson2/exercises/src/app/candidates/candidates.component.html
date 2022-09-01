@@ -1,52 +1,53 @@
 <div class="container">
-    <h2 class="centered">Mission Name: {{missionName}}</h2>
+    <h2 class="centered">Mission Name: {{missionName}}
+        <span *ngIf="!editingMission; else editMission">
+            <span class="editable-text" (click)="editingMission = true;">{{ missionName }}</span>
+        </span>
+        <ng-template #editMission>
+                <input #newName (keyup.enter)="changeMissionName(mission.value)" value="{{ missionName }}" type="text"/>
+                <button (click)="changeMissionName(mission.value)">save</button>
+        </ng-template>
+    </h2>
     <br>
     <div class="row justify-content-center">
         <div class="candidates col-3">
-        <h2>Candidates</h2>
-        <ol>
-           <li *ngFor="let candidate of candidates" (click)="selected = candidate">{{candidate.name}}</li>
-        </ol>
-     </div>
+            <h2>Candidates</h2>
+            <ol>
+                <li *ngFor="let candidate of candidates" (click)="selected = candidate">{{candidate.name}}</li>
+            </ol>
+        </div>
         <div class="data col-3">
             <h2>Candidate Data</h2>
-            <p id = "candidateData" *ngIf="selected">
+            <p id="candidateData" *ngIf="selected">
                 Name: {{selected.name}} <br>
                 Age: {{selected.data.age}} <br>
                 Mass: {{selected.data.mass}} <br>
                 Sidekick: {{selected.data.sidekick}}
-             </p>
+            </p>
         </div>
-        
+
         <div class="centered col-3">
             <h2>Sidekick</h2>
-            <div id = "sidekick" *ngIf = "selected">
-                <img src="{{selected.image}}" alt="Oops! Missing photo!"/>
-             </div>
+            <div id="sidekick" *ngIf="selected">
+                <img src="{{selected.image}}" alt="Oops! Missing photo!" />
+            </div>
         </div>
 
         <div class="crew col-3">
             <h2>Selected Crew</h2>
             <ul>
-                <li *ngFor = "let member of crew">{{member.name}}</li>
+                <li *ngFor="let member of crew">{{member.name}}</li>
             </ul>
             <!-- Add a "Clear Crew List" button here. -->
-            <button id = "crewList" *ngIf = "crew.length !== 0" button.style.visibility = 'hidden' (click)="crew = []">Clear Crew List</button>
+            <button id="crewList" *ngIf="crew.length !== 0" button.style.visibility='hidden' (click)="crew = []">Clear
+                Crew List</button>
         </div>
     </div>
     <hr>
-    <div class = 'centered'>
-        <button id = "clearData" (click)="clearDataImg()">Clear Data and Image</button>
+    <div class='centered'>
+        <button id="clearData" (click)="selected = false">Clear Data and Image</button>
         <!-- Add a "Send on Mission" button here. -->
-        <button id = "sendOnMission" button.style.visibility = 'hidden'(click) = "addToCrew(selected)">Send on Mission</button>
+        <button id="sendOnMission" button.style.visibility='hidden' (click)="addToCrew(selected)">Send on
+            Mission</button>
     </div>
 </div>
-
-<!-- The code below is for one of the Bonus Missions -->
-<ng-template #editMission>
-    <h2 class="centered">
-        Mission Name:
-        <!-- Add a keyup.enter event that calls the changeMissionName function. -->
-        <input #newName type="text"/>
-    </h2>
-</ng-template>
